@@ -90,7 +90,7 @@ case "$extension" in
     htm|html|xhtml)
         try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         try lynx   -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
-        try elinks -dump "$path" && { dump | trim | fmt -s -w $widt; exit 4; }
+        try elinks -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         ;; # fall back to highlight/cat if the text browsers fail
 esac
 
@@ -117,4 +117,4 @@ case "$mimetype" in
         try mediainfo "$path" && { dump | trim | sed 's/  \+:/: /;';  exit 5; } || exit 1;;
 esac
 
-exit 1h
+exit 1

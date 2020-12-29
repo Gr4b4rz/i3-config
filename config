@@ -187,10 +187,12 @@ hide_edge_borders both
 
 bindsym $mod+Ctrl+l exec ~/i3-config/lock.sh
 exec firefox
-exec --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal; exec gnome-terminal'
-exec gnome-terminal
+exec --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws5; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws6; exec gnome-terminal'
 exec spotify
-exec thunderbird
+exec setxkbmap pl
 #exec_always feh --bg_scale /home/pgrabarski/Downloads/wallpaper.jpg
 for_window [class="Spotify"] move to workspace $ws4
 
@@ -206,3 +208,21 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 # Moving workspaces between screens
 bindsym $mod+p move workspace to output right
 bindsym Print exec flameshot gui
+
+
+# #---Dropdown Windows---# #
+for_window [class="Gnome-terminal" title="dropdown_term"] floating enable
+for_window [class="Gnome-terminal" title="dropdown_term"] move scratchpad
+for_window [class="Gnome-terminal" title="dropdown_term"] border pixel 5
+for_window [class="Gnome-terminal" title="dropdown_term"] border color 0000ff
+for_window [class="Gnome-terminal" title="dropdown_term"] resize set 1000 800
+
+bindsym $mod+u scratchpad show; move position center
+bindsym $mod+Shift+F1 exec --no-startup-id gnome-terminal -t "dropdown_term" --zoom=1.2
+exec --no-startup-id gnome-terminal -t "dropdown_term" --zoom=1.2
+
+# wallpaper
+exec nitrogen --set-auto ~/Downloads/Free-1920x1080-Wallpaper.jpeg
+
+# polybar
+exec cd ~/.config/polybar/ && polybar top -c config_main && polybar top -c config_vga && polybar top -c config_hdmi
