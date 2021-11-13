@@ -220,7 +220,7 @@ interval = 1
 format-prefix = "  "
 format = <label>
 label-maxlen = 35
-exec = python spotify_status.py -f '{song} - {artist}'
+exec = python3 spotify_status.py -f '{song} - {artist}'
 format-underline = #1db954
 
 [module/title]

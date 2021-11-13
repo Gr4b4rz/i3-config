@@ -1,4 +1,4 @@
-#!/bin/python
+#!/bin/python3
 
 import sys
 import dbus
@@ -41,6 +41,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+
 def fix_string(string):
     # corrects encoding for the python version used
     if sys.version_info.major == 3:
@@ -48,10 +49,11 @@ def fix_string(string):
     else:
         return string.encode('utf-8')
 
+
 # Default parameters
 output = fix_string(u'{play_pause} {artist}: {song}')
 trunclen = 25
-play_pause = fix_string(u'\uE037,\uE034') # first character is play, second is paused
+play_pause = fix_string(u'\uE037,\uE034')  # first character is play, second is paused
 
 label_with_font = '%{{T{font}}}{label}%{{T-}}'
 font = args.font
