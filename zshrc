@@ -47,6 +47,8 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
+ZSH_DISABLE_COMPFIX=true
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -69,8 +71,6 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker-compose debian)
-
-ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,12 +99,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
 alias docker="sudo docker"
 alias docker-compose="sudo docker-compose"
 alias vim='nvim'
-alias fzf="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
+alias fzf="fzf --preview 'batcat --style=numbers --color=always {} | head -500'"
 alias fzfv='nvim $(fzf)'
-alias python='/usr/bin/python3.9'
+alias python='/usr/bin/python3.10'
+alias python3='/usr/bin/python3.10'
 export PATH="/home/pgrabarski/.local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,0 +1,75 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+#
+
+# Dependencies for this i3blocks config:
+# - rofi
+# - font_awesome icons
+# - pango font set in i3bar config
+
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=~/.config/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=pango
+
+[volume]
+command=~/.config/i3blocks/volume/volume
+label=♪
+interval=1
+signal=1
+
+[memory]
+command=~/.config/i3blocks/memory/memory
+label=RAM
+interval=5
+
+[disk_root]
+instance=/
+interval=30
+command=~/.config/i3blocks/disk_usage/disk_usage format="Disk usage: {perc_used}%" warn_color=#90ce00
+
+[cpu_usage]
+command=~/.config/i3blocks/cpu_usage2/cpu_usage2
+interval=persist
+min_width=CPU 100.00%
+
+[rofi-calendar]
+command=~/.config/i3blocks/rofi-calendar/rofi-calendar
+interval=3600
+
+[time]
+label=
+command=date '+%H:%M:%S'
+interval=1
+
+[battery2]
+command=~/.config/i3blocks/battery2/battery2
+interval=30
+
+[shutdown_menu]
+full_text=
+command=~/.config/i3blocks/shutdown_menu/shutdown_menu

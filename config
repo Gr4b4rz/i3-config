@@ -96,15 +96,15 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Brave"
-set $ws2 "2: Terminal"
-set $ws3 "3: Code"
-set $ws4 "4: Spotify"
-set $ws5 "5: Thunderbird"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws2 "2: Term"
+set $ws3 "3: Term"
+set $ws4 "4: Term"
+set $ws5 "5: Mumble"
+set $ws6 "6: Term"
+set $ws7 "7: Term"
+set $ws8 "8: Term"
+set $ws9 "9: Term"
+set $ws10 "10: ALPK"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -131,9 +131,9 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Brave"] $ws1
-assign [class="Code"] $ws3
 assign [class="Spotify"] $ws4
-assign [class="Thunderbird"] $ws5
+assign [class="mumble"] $ws5
+assign [class="x2goclient"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -189,16 +189,18 @@ bindsym $mod+Ctrl+l exec ~/i3-config/lock.sh
 exec brave-browser
 exec --no-startup-id i3-msg 'workspace $ws2; exec gnome-terminal'
 exec --no-startup-id i3-msg 'workspace $ws3; exec gnome-terminal'
-exec --no-startup-id i3-msg 'workspace $ws5; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws4; exec gnome-terminal'
 exec --no-startup-id i3-msg 'workspace $ws6; exec gnome-terminal'
-exec spotify
+exec --no-startup-id i3-msg 'workspace $ws7; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws8; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws9; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace $ws10; exec x2goclient'
 exec setxkbmap pl
-for_window [class="Spotify"] move to workspace $ws4
 
 # volume controlls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 # Sreen brightness controlls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -225,5 +227,16 @@ exec nitrogen --set-zoom-fill --head=0 ~/i3-config/wallpaper.jpg
 exec nitrogen --set-zoom-fill --head=1 ~/i3-config/wallpaper.jpg
 exec nitrogen --set-zoom-fill --head=2 ~/i3-config/wallpaper.jpg
 
-# polybar
-exec cd ~/.config/polybar/ && polybar top -c config_main && polybar top -c config_vga && polybar top -c config_hdmi
+bar {
+  status_command i3blocks
+  font pango:Inconsolata, Icons 12
+  position top
+
+  colors {
+    background #2f343f
+    statusline #ccffff
+    separator #ffb52a
+    focused_workspace #3f3f3f #3f3f3f #ffffff
+    active_workspace  #3f3f3f #3f3f3f #ffffff
+  }
+}
