@@ -105,8 +105,11 @@ alias docker-compose="sudo docker-compose"
 alias vim='nvim'
 alias fzf="fzf --preview 'batcat --style=numbers --color=always {} | head -500'"
 alias fzfv='nvim $(fzf)'
-alias python='/usr/bin/python3.10'
-alias python3='/usr/bin/python3.10'
+alias python='python3.11'
+alias python3='python3.11'
+export PYTHONPATH="${PYTHONPATH}:/home/pgrabarski/.local/bin"
 export PATH="/home/pgrabarski/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
+export GO111MODULE=on
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
